@@ -1,0 +1,17 @@
+{
+  "type": "crm-card",
+  "data": {
+    "title": "Meme Generator",
+    "location": "crm.record.tab",
+    "fetch": {
+      "targetFunction": "meme-generator-form",
+      "objectTypes": [
+        {
+          "name": "contacts",
+          "propertiesToSend": ["firstname", "email"],
+          "actions": []
+        }
+      ]
+    }
+  }
+}

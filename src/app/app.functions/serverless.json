@@ -1,0 +1,14 @@
+{
+  "runtime": "nodejs12.x",
+  "version": "1.0",
+  "appFunctions": {
+    "meme-generator-form": {
+      "file": "meme-generator-form.js",
+      "secrets": []
+    },
+    "generate-meme": {
+      "file": "generate-meme.js",
+      "secrets": ["IMG_FLIP_USERNAME", "IMG_FLIP_PASSWORD"]
+    }
+  }
+}
