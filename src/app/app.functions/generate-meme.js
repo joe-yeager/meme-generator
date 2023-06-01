@@ -7,7 +7,7 @@ exports.main = async (context = {}, sendResponse) => {
   const boxes = {};
 
   for(let i = 0; i < numBoxes; ++i) {
-    boxes[`boxes[${i}][text]`] = formState[`box-number-${i + 1}`];
+    boxes[`boxes[${i}][text]`] = formState.boxes[i];
   }
 
   try {
