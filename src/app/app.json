@@ -10,7 +10,7 @@
     "crm": {
       "cards": [
         {
-          "file": "./meme-generator.json"
+          "file": "./extensions/MemeForm.json"
         }
       ]
     }

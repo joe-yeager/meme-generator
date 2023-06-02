@@ -1,0 +1,15 @@
+{
+  "type": "crm-card",
+  "data": {
+    "title": "Meme Generator v2",
+    "location": "crm.record.tab",
+    "module": {
+      "file": "MemeForm.jsx"
+    },
+    "objectTypes": [
+      {
+        "name": "contacts"
+      }
+    ]
+  }
+}
