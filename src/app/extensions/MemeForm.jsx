@@ -8,21 +8,23 @@ import {
   Input,
   Select,
   Image,
-  Divider
+  Stack,
+  Text
 } from '@hubspot/ui-extensions';
 
-function generateTextInputs(boxCount, boxes, setBoxes) {
+function generateTextInputs(theChosenOne, boxes, setBoxes) {
+  const { box_count, id } = theChosenOne;
   const inputs = [];
-  for(let boxNumber = 0; boxNumber < boxCount; ++boxNumber) {
+  for(let boxNumber = 0; boxNumber < box_count; ++boxNumber) {
     inputs.push(
       <Input
-      label={`Box Number ${boxNumber}`}
+      label={`Box Number ${boxNumber + 1}`}
       name={`box-number-${boxNumber}`}
-      required={true}
+      key={`${id}-${boxNumber}`}
       onChange={value => {
         setBoxes({
           ...boxes,
-          [boxNumber]: value
+          [boxNumber]: value,
         });
       }}
       />
@@ -42,9 +44,11 @@ hubspot.extend(({ runServerlessFunction }) => (
 const MemeForm =  ({ runServerless }) => {
 
   const [boxes, setBoxes] = useState({});
+  const [error, setError] = useState(null);
   const index = Math.floor(Math.random() * supportedMemes.length);
   const [theChosenOne, setTheChosenOne] = useState(supportedMemes[index]);
   const [imageUrl, setImageUrl] = useState(theChosenOne.url)
+  const [inputs, setInputs] = useState([]);
 
   const options = useMemo(() => {
     return supportedMemes.map(meme => {
@@ -57,8 +61,11 @@ const MemeForm =  ({ runServerless }) => {
     })
   }, [supportedMemes])
 
+  useEffect(() => {
+    setInputs(generateTextInputs(theChosenOne, boxes, setBoxes))
+  }, [theChosenOne, boxes]);
 
-  const runFunction = useCallback(() => {
+  const runServerlessFunction = useCallback(() => {
       runServerless({
         name: 'generate-meme-v2',
         payload: {
@@ -72,35 +79,36 @@ const MemeForm =  ({ runServerless }) => {
         .then(res => {
           if(res.status === "SUCCESS") {
             setImageUrl(res.response.message.body);
+          } else {
+            setError("Unable to generate memes at the moment")
           }
         })
   }, [runServerless, boxes]);
 
   return <Card>
-    <Form>
+      <Stack direction='row' distance='xl'>
+        <Form preventDefault={true} onSubmit={runServerlessFunction}>
+          <Select
+            label="Choose your meme"
+            name="the-chosen-one"
+            value={theChosenOne.id}
+            error={!!error}
+            validationMessage={error ? error : null}
+            onChange={value => {
+              const newMeme = findMeme(value);
+              setBoxes({});
+              setTheChosenOne(newMeme);
+              setImageUrl(newMeme.url);
+              setError(null);
+            }}
+            options={options}
+          />
+          {...inputs}
+          <Text></Text> {/* Hack to add a blank space*/}
+          <Button type="submit" variant="primary">Generate Meme!</Button>
+      </Form>
       <Image src={imageUrl}/>
-      <Select
-        label="Choose your meme"
-        name="the-chosen-one"
-        value={theChosenOne.id}
-        onChange={value => {
-          const newMeme = findMeme(value);
-          setBoxes({});
-          setTheChosenOne(newMeme);
-          setImageUrl(newMeme.url);
-        }}
-        options={options}
-      />
-      {...generateTextInputs(theChosenOne.box_count, boxes, setBoxes)}
-      <Button
-        onClick={() => {
-          runFunction()
-        }}
-        type="button"
-      >
-        Generate Meme!
-      </Button>
-    </Form>
+    </Stack>
   </Card>;
 };
 
