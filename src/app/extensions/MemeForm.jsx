@@ -9,7 +9,8 @@ import {
   Select,
   Image,
   Stack,
-  Text
+  Text,
+  Box
 } from '@hubspot/ui-extensions';
 
 function generateTextInputs(theChosenOne, boxes, setBoxes) {
@@ -45,6 +46,7 @@ const MemeForm =  ({ runServerless }) => {
 
   const [boxes, setBoxes] = useState({});
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const index = Math.floor(Math.random() * supportedMemes.length);
   const [theChosenOne, setTheChosenOne] = useState(supportedMemes[index]);
   const [imageUrl, setImageUrl] = useState(theChosenOne.url)
@@ -66,6 +68,7 @@ const MemeForm =  ({ runServerless }) => {
   }, [theChosenOne, boxes]);
 
   const runServerlessFunction = useCallback(() => {
+    setLoading(true);
       runServerless({
         name: 'generate-meme-v2',
         payload: {
@@ -82,11 +85,12 @@ const MemeForm =  ({ runServerless }) => {
           } else {
             setError("Unable to generate memes at the moment")
           }
+          setLoading(false);
         })
-  }, [runServerless, boxes]);
+  }, [runServerless, boxes, loading]);
 
   return <Card>
-      <Stack direction='row' distance='xl'>
+      <Stack direction='row' distance='xl' width='100%'>
         <Form preventDefault={true} onSubmit={runServerlessFunction}>
           <Select
             label="Choose your meme"
@@ -105,11 +109,9 @@ const MemeForm =  ({ runServerless }) => {
           />
           {...inputs}
           <Text></Text> {/* Hack to add a blank space*/}
-          <Button type="submit" variant="primary">Generate Meme!</Button>
+          <Button disabled={loading} type="submit" variant="primary">Generate Meme!</Button>
       </Form>
-      <Image src={imageUrl}/>
+      <Image src={imageUrl} href={imageUrl} width={300} />
     </Stack>
   </Card>;
 };
-
-
