@@ -10,7 +10,6 @@ import {
   Image,
   Stack,
   Text,
-  Box
 } from '@hubspot/ui-extensions';
 
 function generateTextInputs(theChosenOne, boxes, setBoxes) {
