@@ -5,18 +5,24 @@
   "license": "MIT",
   "main": "Example.jsx",
   "scripts": {
+    "bump": "npm install -s @hubspot/ui-extensions@next && npm install -D @hubspot/ui-extensions-dev-server@next",
+    "setup": "npm run bump && npm ci",
+    "clean-install-local": "rm -rf node_modules/ package-lock.json && npm update && npm install --install-links",
+    "developing-local-dev-server": "../../../scripts/useLocalVersionOfDevServer.js",
+    "developing-local-components": "../../../scripts/useLocalVersionOfComponents.js && npm run clean-install-local",
     "dev": "hs-ui-extensions-dev-server dev",
-    "build": "hs-ui-extensions-dev-server build"
+    "build": "hs-ui-extensions-dev-server build",
+    "test": "../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/tests/runTests.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/HubSpot/ui-extensions-react-examples"
   },
   "dependencies": {
-    "@hubspot/ui-extensions": "latest",
+    "@hubspot/ui-extensions": "^0.0.1-beta.2",
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@hubspot/ui-extensions-dev-server": "latest"
+    "@hubspot/ui-extensions-dev-server": "file:../../../../../ui-extensibility/public-packages/ui-extensions-dev-server"
   }
 }
