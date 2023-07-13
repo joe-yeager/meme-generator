@@ -46,7 +46,7 @@ const MemeForm =  ({ runServerless }) => {
   const [boxes, setBoxes] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const index = Math.floor(Math.random() * supportedMemes.length);
+  const index = supportedMemes.findIndex((meme) => meme.name === 'Happy Star Congratulations');
   const [theChosenOne, setTheChosenOne] = useState(supportedMemes[index]);
   const [imageUrl, setImageUrl] = useState(theChosenOne.url)
   const [inputs, setInputs] = useState([]);
@@ -79,6 +79,7 @@ const MemeForm =  ({ runServerless }) => {
         },
       })
         .then(res => {
+          console.log(res)
           if(res.status === "SUCCESS") {
             setImageUrl(res.response.message.body);
           } else {
@@ -92,7 +93,7 @@ const MemeForm =  ({ runServerless }) => {
       <Stack direction='row' distance='xl' width='100%'>
         <Form preventDefault={true} onSubmit={runServerlessFunction}>
           <Select
-            label="Choose your meme"
+            label="Choose your meme, please"
             name="the-chosen-one"
             value={theChosenOne.id}
             error={!!error}
