@@ -1,0 +1,13 @@
+{
+  "name": "le-meme-generator",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "main": "Example.jsx",
+  "scripts": {
+    "dev": "npm run --prefix='src/app/extensions' dev",
+    "build": "npm run --prefix='src/app/extensions' build",
+    "integration-test": "DEBUG=true npm run --prefix='src/app/extensions' integration-test"
+  }
+}
+
