@@ -15,7 +15,7 @@
     "integration-test": "../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/integrationTests/runTests.js",
     "local-dev": "npm run developing-local-dev-server && hs-ui-extensions-dev-server dev",
     "local-build": "npm run developing-local-dev-server && hs-ui-extensions-dev-server build",
-    "local-integration-test": "npm run developing-local-dev-server && ../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/integrationTests/runTests.js"
+    "local-integration-test": "DEBUG='true' npm run developing-local-dev-server && ../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/integrationTests/runTests.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@hubspot/ui-extensions-dev-server": "^0.4.0"
+    "@hubspot/ui-extensions-dev-server": "../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/",
+    "@hubspot/app-functions-dev-server": "../../../../../ui-extensibility/public-packages/app-functions-dev-server/"
   }
 }

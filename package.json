@@ -5,9 +5,11 @@
   "license": "MIT",
   "main": "Example.jsx",
   "scripts": {
-    "dev": "npm run --prefix='src/app/extensions' dev",
-    "build": "npm run --prefix='src/app/extensions' build",
-    "integration-test": "DEBUG=true npm run --prefix='src/app/extensions' integration-test"
+    "local-dev": "npm run --prefix='src/app/extensions' local-dev",
+    "local-build": "npm run --prefix='src/app/extensions' local-build",
+    "integration-test": "DEBUG=true npm run --prefix='src/app/extensions' local-integration-test"
+  },
+  "dependencies": {
+    "prettier": "^3.0.0"
   }
 }
-

@@ -1,11 +1,17 @@
 // For external API calls
 const axios = require('axios');
 
+const getAllMemesUrls = {
+  qa: 'https://api.hubspotqa.com/crm/v3/objects/2-20675073',
+  prod: 'https://api.hubspot.com/crm/v3/objects/2-16897592',
+};
+
 exports.main = async (context = {}, sendResponse) => {
   const { formState } = context.event.payload;
   const numBoxes = Number.parseInt(formState.boxes_length);
   const boxes = {};
 
+  console.log(formState);
   for (let i = 0; i < numBoxes; ++i) {
     boxes[`boxes[${i}][text]`] = formState.boxes[i];
   }
@@ -24,6 +30,35 @@ exports.main = async (context = {}, sendResponse) => {
       }
     );
     if (data.success) {
+      const url =
+        context.HS_ENVIRONMENT === 'prod'
+          ? getAllMemesUrls.prod
+          : getAllMemesUrls.qa;
+      axios
+        .post(
+          url,
+          {
+            properties: {
+              name: formState.name,
+              url: data.data.url,
+              dankness: formState.dankness || 1,
+            },
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${context.secrets.PRIVATE_APP_ACCESS_TOKEN}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        .then(
+          (response) => {
+            console.log(response.data);
+          },
+          (err) => {
+            console.log(err.message);
+          }
+        );
       sendResponse({
         status: 200,
         message: {

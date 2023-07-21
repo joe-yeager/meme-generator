@@ -1,13 +1,23 @@
 {
   "name": "Meme generator",
   "description": "Generate memes using imgflip",
-  "scopes": ["crm.objects.contacts.read", "crm.objects.contacts.write"],
+  "scopes": [
+    "crm.objects.contacts.read",
+    "crm.objects.contacts.write",
+    "crm.objects.custom.read",
+    "crm.objects.custom.write",
+    "crm.schemas.custom.read",
+    "crm.schemas.custom.write"
+  ],
   "public": false,
   "extensions": {
     "crm": {
       "cards": [
         {
           "file": "./extensions/MemeForm.json"
+        },
+        {
+          "file": "./extensions/HistoricalMemes.json"
         }
       ]
     }

@@ -5,6 +5,10 @@
     "generate-meme-v2": {
       "file": "generate-meme.js",
       "secrets": ["IMG_FLIP_USERNAME", "IMG_FLIP_PASSWORD"]
+    },
+    "retrieve-meme": {
+      "file": "retrieve-memes.js",
+      "secrets": []
     }
   }
 }
