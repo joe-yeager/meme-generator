@@ -18,6 +18,9 @@
         },
         {
           "file": "./extensions/HistoricalMemes.json"
+        },
+        {
+          "file": "./extensions/TestInProd.json"
         }
       ]
     }
