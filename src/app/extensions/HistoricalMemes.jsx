@@ -15,14 +15,23 @@ import {
 } from '@hubspot/ui-extensions';
 
 
-hubspot.extend(({ runServerlessFunction }) => (
-  <HistoricalMemes runServerless={runServerlessFunction} />
+hubspot.extend(({ runServerlessFunction, context }) => (
+  <HistoricalMemes runServerless={runServerlessFunction} context={context}/>
 ));
 
 const defaultImage = "https://i.imgflip.com/7tb6fh.jpg"
-const viewAllMemes = "https://app.hubspotqa.com/contacts/881674774/objects/2-20675073/views/all/list"
 
-const HistoricalMemes =  ({ runServerless }) => {
+const objectTypeIds = {
+  21429064: "2-16897592",
+  881674774: "2-20675073"
+}
+
+const HistoricalMemes =  ({ runServerless, context }) => {
+  console.log(context)
+  const { portal: { id: portalId} } = context;
+  const objectTypeId = objectTypeIds[portalId]
+  const viewAllMemes = `/contacts/${portalId}/objects/${objectTypeId}/views/all/list`
+
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -88,12 +97,12 @@ const HistoricalMemes =  ({ runServerless }) => {
         {memeData && memeData.dankness &&
           <>
             <Heading>Dankness:</Heading>
-            <Text format={{fontWeight: 'bold'}}>{memeData? memeData.dankness : ''}</Text>)
+            <Text format={{fontWeight: 'bold'}}>{memeData? memeData.dankness : ''}</Text>
           </>
         }
         { loading ?
           <LoadingSpinner label='Loading memes' showLabel="true" size='md' layout='centered'/>:
-          <Image src={memeData? memeData.url : defaultImage} href={theChosenOne ? `https://app.hubspotqa.com/contacts/881674774/record/2-20675073/${theChosenOne}/view/1` : viewAllMemes} width={300} />
+          <Image src={memeData? memeData.url : defaultImage} href={theChosenOne ? `/contacts/${portalId}/record/${objectTypeId}/${theChosenOne}/view/1` : viewAllMemes} width={300} />
          }
       </Box>
     </Flex>

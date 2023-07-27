@@ -15,18 +15,19 @@
     "integration-test": "../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/integrationTests/runTests.js",
     "local-dev": "npm run developing-local-dev-server && hs-ui-extensions-dev-server dev",
     "local-build": "npm run developing-local-dev-server && hs-ui-extensions-dev-server build",
-    "local-integration-test": "DEBUG='true' npm run developing-local-dev-server && ../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/integrationTests/runTests.js"
+    "local-integration-test": "DEBUG='true' npm run developing-local-dev-server && ../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/integrationTests/runTests.js",
+    "latest": "../../../scripts/switchBackToLatest.js && npm run clean-install-local"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/HubSpot/ui-extensions-react-examples"
   },
   "dependencies": {
-    "@hubspot/ui-extensions": "^0.4.0",
-    "react": "^18.2.0"
+    "@hubspot/ui-extensions": "latest",
+    "react": "^18.2.0",
+    "@hubspot/ui-extensions-dev-server": "latest"
   },
   "devDependencies": {
-    "@hubspot/ui-extensions-dev-server": "../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/",
-    "@hubspot/app-functions-dev-server": "../../../../../ui-extensibility/public-packages/app-functions-dev-server/"
+    "@hubspot/ui-extensions-dev-server": "../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/"
   }
 }

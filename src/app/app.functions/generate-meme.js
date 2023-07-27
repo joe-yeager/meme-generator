@@ -31,7 +31,7 @@ exports.main = async (context = {}, sendResponse) => {
     );
     if (data.success) {
       const url =
-        context.HS_ENVIRONMENT === 'prod'
+        context.secrets.HS_ENVIRONMENT === 'prod'
           ? getAllMemesUrls.prod
           : getAllMemesUrls.qa;
       axios

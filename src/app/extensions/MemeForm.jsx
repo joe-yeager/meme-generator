@@ -44,7 +44,7 @@ hubspot.extend(({ runServerlessFunction }) => (
 ));
 
 const MemeForm =  ({ runServerless }) => {
-
+  // console.log(importScripts())
   const [boxes, setBoxes] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -146,3 +146,5 @@ const MemeForm =  ({ runServerless }) => {
     </Flex>
   </Card>;
 };
+
+export default MemeForm;

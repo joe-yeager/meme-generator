@@ -8,7 +8,7 @@ exports.main = async (context = {}, sendResponse) => {
   if (context.event.payload.memes === 'ALL') {
     try {
       const url =
-        context.HS_ENVIRONMENT === 'prod'
+        context.secrets.HS_ENVIRONMENT === 'prod'
           ? getAllMemesUrls.prod
           : getAllMemesUrls.qa;
       const result = await axios.get(url, {
