@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   Button,
   Card,
@@ -27,7 +27,6 @@ const objectTypeIds = {
 }
 
 const HistoricalMemes =  ({ runServerless, context }) => {
-  console.log(context)
   const { portal: { id: portalId} } = context;
   const objectTypeId = objectTypeIds[portalId]
   const viewAllMemes = `/contacts/${portalId}/objects/${objectTypeId}/views/all/list`
@@ -101,7 +100,7 @@ const HistoricalMemes =  ({ runServerless, context }) => {
           </>
         }
         { loading ?
-          <LoadingSpinner label='Loading memes' showLabel="true" size='md' layout='centered'/>:
+          <LoadingSpinner label='Loading memes' showLabel={true} size='md' layout='centered'/>:
           <Image src={memeData? memeData.url : defaultImage} href={theChosenOne ? `/contacts/${portalId}/record/${objectTypeId}/${theChosenOne}/view/1` : viewAllMemes} width={300} />
          }
       </Box>

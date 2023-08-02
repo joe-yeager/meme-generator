@@ -44,7 +44,6 @@ hubspot.extend(({ runServerlessFunction }) => (
 ));
 
 const MemeForm =  ({ runServerless }) => {
-  // console.log(importScripts())
   const [boxes, setBoxes] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -141,7 +140,7 @@ const MemeForm =  ({ runServerless }) => {
           {...inputs}
         </Box>
         <Box flex='none' alignSelf='center'>
-          { loading ? <LoadingSpinner label='Loading meme' showLabel="true" size='md' layout='centered'/> : <Image src={imageUrl} href={imageUrl} width={300} />}
+          { loading ? <LoadingSpinner label='Loading meme' showLabel={true} size='md' layout='centered'/> : <Image src={imageUrl} href={imageUrl} width={300} />}
         </Box>
     </Flex>
   </Card>;

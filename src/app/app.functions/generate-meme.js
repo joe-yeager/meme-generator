@@ -11,7 +11,6 @@ exports.main = async (context = {}, sendResponse) => {
   const numBoxes = Number.parseInt(formState.boxes_length);
   const boxes = {};
 
-  console.log(formState);
   for (let i = 0; i < numBoxes; ++i) {
     boxes[`boxes[${i}][text]`] = formState.boxes[i];
   }
