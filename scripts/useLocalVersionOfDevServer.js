@@ -6,6 +6,10 @@ const PATH_TO_DEMO_PROJECT = path.join(__dirname, '../src/app/extensions/');
 const PACKAGE_JSON_PATH = path.join(PATH_TO_DEMO_PROJECT, 'package.json');
 const PACKAGE_JSON = require(PACKAGE_JSON_PATH);
 
+if (!PACKAGE_JSON.devDependencies) {
+  PACKAGE_JSON.devDependencies = {};
+}
+
 PACKAGE_JSON.devDependencies['@hubspot/ui-extensions-dev-server'] =
   '../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/';
 
