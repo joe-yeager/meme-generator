@@ -38,6 +38,7 @@ function generateTextInputs(theChosenOne, boxes, setBoxes) {
 function findMeme(id) {
   return supportedMemes.find((meme) => meme.id === id);
 }
+if(true){}
 
 hubspot.extend(({ runServerlessFunction }) => (
   <MemeForm runServerless={runServerlessFunction} />

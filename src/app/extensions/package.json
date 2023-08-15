@@ -16,17 +16,18 @@
     "local-dev": "npm run developing-local-dev-server && hs-ui-extensions-dev-server dev",
     "local-build": "npm run developing-local-dev-server && hs-ui-extensions-dev-server build",
     "local-integration-test": "DEBUG='true' npm run developing-local-dev-server && ../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/integrationTests/runTests.js",
-    "latest": "../../../scripts/switchBackToLatest.js && npm run clean-install-local"
+    "latest": "../../../scripts/switchBackToLatest.js && npm run clean-install-local",
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/HubSpot/ui-extensions-react-examples"
   },
   "dependencies": {
-    "@hubspot/ui-extensions": "^0.6.0",
+    "@hubspot/ui-extensions": "^0.7.2",
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@hubspot/ui-extensions-dev-server": "^0.6.0"
+    "@hubspot/ui-extensions-dev-server": "^0.7.2"
   }
 }

@@ -1,0 +1,15 @@
+{
+  "type": "crm-card",
+  "data": {
+    "title": "Meme Viewer",
+    "location": "crm.record.tab",
+    "module": {
+      "file": "ViewMeme.jsx"
+    },
+    "objectTypes": [
+      {
+        "name": "p_memes"
+      }
+    ]
+  }
+}

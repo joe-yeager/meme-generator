@@ -60,10 +60,7 @@ exports.main = async (context = {}, sendResponse) => {
         );
       sendResponse({
         status: 200,
-        message: {
-          type: 'SUCCESS',
-          body: `${data.data.url}`,
-        },
+        message: { type: 'SUCCESS', body: `${data.data.url}` },
       });
     } else {
       sendResponse({
