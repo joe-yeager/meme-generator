@@ -71,6 +71,13 @@ const MemeForm =  ({ runServerless }) => {
   }, [theChosenOne, boxes]);
 
   const runServerlessFunction = useCallback(() => {
+    console.table({
+      boxes_length: theChosenOne.box_count,
+      template_id: theChosenOne.id,
+      boxes,
+      name,
+      dankness
+    })
     setLoading(true);
     runServerless({
       name: 'generate-meme-v2',
@@ -84,8 +91,10 @@ const MemeForm =  ({ runServerless }) => {
         }
       }
     }).then(res => {
-      console.log(res.response.message)
-      if(res.status === "SUCCESS") {
+      console.log("Meme Form response:")
+      console.table(res.response);
+      if(res.status === "SUCCESS" && res.response.status === 200) {
+        setError(null);
         setImageUrl(res.response.message.body);
       } else {
         setError("Unable to generate memes at the moment")

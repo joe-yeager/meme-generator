@@ -59,7 +59,8 @@ const HistoricalMemes =  ({ runServerless, context }) => {
         },
       })
         .then(res => {
-          console.log("HISTORICAL MEMES", res.response.message)
+          console.log("Retrieve memes response:")
+          console.table(res.response);
           if(res.status === "SUCCESS" && res.response.status === 200) {
             setMemes(res.response.message.body);
           } else {

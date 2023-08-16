@@ -4,7 +4,7 @@
     "title": "Test in PROD",
     "location": "crm.record.tab",
     "module": {
-      "file": "TestInProd.jsx"
+      "file": "TestInProd.tsx"
     },
     "objectTypes": [
       {

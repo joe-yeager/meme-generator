@@ -1,14 +1,17 @@
 {
   "type": "crm-card",
   "data": {
-    "title": "Historical Memes Side",
+    "title": "Nyan Cat",
     "location": "crm.record.sidebar",
     "module": {
-      "file": "HistoricalMemes.jsx"
+      "file": "NyanCatSidebar.jsx"
     },
     "objectTypes": [
       {
         "name": "contacts"
+      },
+      {
+        "name": "p_memes"
       }
     ]
   }

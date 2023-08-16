@@ -5,12 +5,6 @@ exports.main = async (context = {}, sendResponse) => {
   const { formState } = context.event.payload;
   const numBoxes = Number.parseInt(formState.boxes_length);
   const boxes = {};
-  const {
-    MEME_OBJECT_URL,
-    PRIVATE_APP_ACCESS_TOKEN,
-    IMG_FLIP_PASSWORD,
-    IMG_FLIP_USERNAME,
-  } = process.env;
 
   for (let i = 0; i < numBoxes; ++i) {
     boxes[`boxes[${i}][text]`] = formState.boxes[i];
@@ -22,8 +16,8 @@ exports.main = async (context = {}, sendResponse) => {
       null,
       {
         params: {
-          username: IMG_FLIP_USERNAME,
-          password: IMG_FLIP_PASSWORD,
+          username: process.env.IMG_FLIP_USERNAME,
+          password: process.env.IMG_FLIP_PASSWORD,
           template_id: formState.template_id,
           ...boxes,
         },
@@ -31,7 +25,7 @@ exports.main = async (context = {}, sendResponse) => {
     );
     if (data.success) {
       await axios.post(
-        MEME_OBJECT_URL,
+        process.env.MEME_OBJECT_URL,
         {
           properties: {
             name: formState.name,
@@ -41,7 +35,7 @@ exports.main = async (context = {}, sendResponse) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${PRIVATE_APP_ACCESS_TOKEN}`,
+            Authorization: `Bearer ${process.env.PRIVATE_APP_ACCESS_TOKEN}`,
             'Content-Type': 'application/json',
           },
         }

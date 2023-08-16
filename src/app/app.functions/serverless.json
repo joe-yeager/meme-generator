@@ -4,11 +4,11 @@
   "appFunctions": {
     "generate-meme-v2": {
       "file": "generate-meme.js",
-      "secrets": ["IMG_FLIP_USERNAME", "IMG_FLIP_PASSWORD"]
+      "secrets": ["IMG_FLIP_USERNAME", "IMG_FLIP_PASSWORD", "MEME_OBJECT_URL"]
     },
     "retrieve-meme": {
       "file": "retrieve-memes.js",
-      "secrets": []
+      "secrets": ["MEME_OBJECT_URL"]
     }
   }
 }

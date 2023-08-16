@@ -23,16 +23,10 @@
           "file": "./extensions/TestInProd.json"
         },
         {
-          "file": "./extensions/MemeFormSidebar.json"
-        },
-        {
-          "file": "./extensions/HistoricalMemesSidebar.json"
-        },
-        {
-          "file": "./extensions/TestInProdSidebar.json"
-        },
-        {
           "file": "./extensions/ViewMeme.json"
+        },
+        {
+          "file": "./extensions/NyanCatSidebar.json"
         }
       ]
     }
