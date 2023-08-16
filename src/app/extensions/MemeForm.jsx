@@ -84,6 +84,7 @@ const MemeForm =  ({ runServerless }) => {
         }
       }
     }).then(res => {
+      console.log(res.response.message)
       if(res.status === "SUCCESS") {
         setImageUrl(res.response.message.body);
       } else {
