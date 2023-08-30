@@ -26,8 +26,5 @@
   "dependencies": {
     "@hubspot/ui-extensions": "^0.7.2",
     "react": "^18.2.0"
-  },
-  "devDependencies": {
-    "@hubspot/ui-extensions-dev-server": "../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/"
   }
 }

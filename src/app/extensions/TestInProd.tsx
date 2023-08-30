@@ -1,25 +1,19 @@
 import React from 'react';
-import {
-  Card,
-  hubspot,
-  Image,
-  Flex,
-} from '@hubspot/ui-extensions';
+import { Card, hubspot, Image, Flex } from '@hubspot/ui-extensions';
 
+hubspot.extend(({ context }) => <TestInProd />);
 
+const prod =
+  'https://21429064.fs1.hubspotusercontent-na1.net/hubfs/21429064/memes/7ty78m.jpg';
+const notProd =
+  'https://21429064.fs1.hubspotusercontent-na1.net/hubfs/21429064/memes/7ty71z.jpg';
 
-hubspot.extend(({ context }) => (
-  <TestInProd/>
-));
-
-const prod = "https://i.imgflip.com/7ty78m.jpg";
-const notProd = "https://i.imgflip.com/7ty71z.jpg";
-
-const TestInProd =  () => {
+const TestInProd = () => {
   return (
     <Card>
       <Flex direction="column" align="center">
-        <Image src={self.origin.includes("static-qa") ? notProd : prod} />
+        <Image src={self.origin.includes('static-qa') ? notProd : prod} />
       </Flex>
-    </Card>);
+    </Card>
+  );
 };

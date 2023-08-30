@@ -7,7 +7,9 @@
     "crm.objects.custom.read",
     "crm.objects.custom.write",
     "crm.schemas.custom.read",
-    "crm.schemas.custom.write"
+    "crm.schemas.custom.write",
+    "content",
+    "files"
   ],
   "public": false,
   "extensions": {
