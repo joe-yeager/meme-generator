@@ -10,11 +10,11 @@
     "clean-install-local": "rm -rf node_modules/ package-lock.json && npm update && npm install --install-links",
     "developing-local-dev-server": "../../../scripts/useLocalVersionOfDevServer.js && npm run clean-install-local",
     "developing-local-components": "../../../scripts/useLocalVersionOfComponents.js && npm run clean-install-local",
-    "dev": "hs-ui-extensions-dev-server dev",
-    "build": "hs-ui-extensions-dev-server build",
+    "dev": "hs-ui-extensions-dev-server dev --force",
+    "build": "hs-ui-extensions-dev-server build --force",
     "integration-test": "../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/integrationTests/runTests.js",
-    "local-dev": "npm run developing-local-dev-server && hs-ui-extensions-dev-server dev",
-    "local-build": "npm run developing-local-dev-server && hs-ui-extensions-dev-server build",
+    "local-dev": "npm run developing-local-dev-server && hs-ui-extensions-dev-server dev --force",
+    "local-build": "npm run developing-local-dev-server && hs-ui-extensions-dev-server build --force",
     "local-integration-test": "DEBUG='true' npm run developing-local-dev-server && ../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/integrationTests/runTests.js",
     "latest": "../../../scripts/switchBackToLatest.js && npm run clean-install-local",
     "lint": "eslint"
@@ -24,8 +24,7 @@
     "url": "https://github.com/HubSpot/ui-extensions-react-examples"
   },
   "dependencies": {
-    "@hubspot/ui-extensions": "^0.7.2",
-    "react": "^18.2.0"
+    "@hubspot/ui-extensions": "^0.7.2"
   },
   "devDependencies": {
     "@hubspot/ui-extensions-dev-server": "../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/"
