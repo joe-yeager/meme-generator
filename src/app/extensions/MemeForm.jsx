@@ -118,7 +118,6 @@ const MemeForm =  ({ runServerless }) => {
               setBoxes({});
               setTheChosenOne(newMeme);
               setImageUrl(newMeme.url);
-              setName(null);
               setDankness(null);
               setError(null);
             }}
@@ -131,6 +130,9 @@ const MemeForm =  ({ runServerless }) => {
             name={`name`}
             key={`meme-name`}
             onInput={value => {
+              setName(value);
+            }}
+            onChange={value => {
               setName(value);
             }}
           />
