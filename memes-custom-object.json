@@ -1,0 +1,51 @@
+{
+  "name": "memes",
+  "labels": { "singular": "Meme", "plural": "Memes" },
+  "requiredProperties": ["name"],
+  "searchableProperties": ["name", "url", "dankness"],
+  "primaryDisplayProperty": "name",
+  "properties": [
+    {
+      "name": "hubspot_owner_assigneddate",
+      "label": "Owner Assigned Date",
+      "type": "datetime",
+      "fieldType": "date",
+      "description": "The most recent date an owner was assigned to this object. This is set automatically by HubSpot and can be used for segmentation and reporting."
+    },
+    {
+      "name": "hubspot_owner_id",
+      "label": "Owner",
+      "type": "enumeration",
+      "fieldType": "select",
+      "description": "The owner of the object."
+    },
+    {
+      "name": "hubspot_team_id",
+      "label": "HubSpot Team",
+      "type": "enumeration",
+      "fieldType": "select",
+      "description": "The primary team of the owner."
+    },
+    {
+      "name": "dankness",
+      "label": "dankness",
+      "type": "number",
+      "fieldType": "number",
+      "description": ""
+    },
+    {
+      "name": "name",
+      "label": "name",
+      "type": "string",
+      "fieldType": "text",
+      "description": ""
+    },
+    {
+      "name": "url",
+      "label": "url",
+      "type": "string",
+      "fieldType": "text",
+      "description": ""
+    }
+  ]
+}
