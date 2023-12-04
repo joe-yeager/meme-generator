@@ -29,7 +29,8 @@
         },
         {
           "file": "./extensions/NyanCatSidebar.json"
-        }
+        },
+        { "file": "./extensions/Peekaboo.json" }
       ]
     }
   },
