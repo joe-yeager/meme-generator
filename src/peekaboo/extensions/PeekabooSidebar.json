@@ -1,0 +1,16 @@
+{
+  "type": "crm-card",
+  "data": {
+    "title": "Peekaboo Sidebar",
+    "location": "crm.record.sidebar",
+    "module": {
+      "file": "PeekabooSidebar.jsx"
+    },
+    "objectTypes": [
+      {
+        "name": "contacts"
+      }
+    ]
+  },
+  "uid": "Peekaboo"
+}

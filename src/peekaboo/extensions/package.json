@@ -1,0 +1,25 @@
+{
+  "name": "meme-generator",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "main": "Example.jsx",
+  "scripts": {
+    "bump": "npm install -s @hubspot/ui-extensions@latest && npm install",
+    "setup": "npm run bump && npm ci",
+    "clean-install-local": "rm -rf node_modules/ package-lock.json && npm update && npm install --install-links",
+    "developing-local-components": "../../../scripts/useLocalVersionOfComponents.js && npm run clean-install-local",
+    "dev": "hs-ui-extensions-dev-server dev --force",
+    "build": "hs-ui-extensions-dev-server build --force",
+    "integration-test": "../../../../../ui-extensibility/public-packages/ui-extensions-dev-server/integrationTests/runTests.js",
+    "local-dev": "npm run developing-local-dev-server && hs-ui-extensions-dev-server dev --force",
+    "local-build": "npm run developing-local-dev-server && hs-ui-extensions-dev-server build --force",
+    "local-integration-test": "DEBUG=true npm run developing-local-dev-server && npm run integration-test",
+    "latest": "../../../scripts/switchBackToLatest.js && npm run clean-install-local",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@hubspot/ui-extensions": "^0.8.4",
+    "@remote-ui/rpc": "^1.4.4"
+  }
+}
