@@ -1,6 +1,4 @@
 {
-  "runtime": "nodejs16.x",
-  "version": "1.0",
   "appFunctions": {
     "generate-meme-v2": {
       "file": "generate-meme.js",
@@ -10,10 +8,6 @@
         "MEME_OBJECT_URL",
         "FILE_MANAGER_URL"
       ]
-    },
-    "retrieve-meme": {
-      "file": "retrieve-memes.js",
-      "secrets": ["MEME_OBJECT_URL"]
     }
   }
 }

@@ -19,9 +19,6 @@
           "file": "./extensions/MemeForm.json"
         },
         {
-          "file": "./extensions/HistoricalMemes.json"
-        },
-        {
           "file": "./extensions/TestInProd.json"
         },
         {

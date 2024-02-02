@@ -5,40 +5,40 @@ const crypto = require('crypto');
 
 const imgFlipUrl = 'https://api.imgflip.com/caption_image';
 
-exports.main = async (context = {}, sendResponse) => {
+exports.main = async (context = {}) => {
   const { formState } = context.event.payload;
 
   try {
     const memeData = await createMeme(formState);
 
     if (!memeData.success) {
-      sendResponse({
+      return {
         status: 500,
         message: {
           type: 'ERROR',
           body: memeData.data,
         },
-      });
+      };
     }
 
     const filePath = await downloadImage(memeData);
     const memeUrl = await uploadToFileManager(filePath);
     await createCustomMemeObject(formState, memeUrl);
 
-    sendResponse({
+    return {
       status: 200,
       message: { type: 'SUCCESS', body: `${memeUrl}` },
-    });
+    };
   } catch (err) {
     console.error(err.response.data);
 
-    sendResponse({
+    return {
       status: 500,
       message: {
         type: 'ERROR',
         body: err.response.data,
       },
-    });
+    };
   }
 };
 

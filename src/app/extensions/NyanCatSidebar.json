@@ -4,7 +4,7 @@
     "title": "Nyan Cat",
     "location": "crm.record.sidebar",
     "module": {
-      "file": "NyanCatSidebar.jsx"
+      "file": "NyanCatSidebar.tsx"
     },
     "objectTypes": [
       {
@@ -12,7 +12,7 @@
       },
       {
         "name": "p_memes"
-      }
+    }
     ]
   }
 }
