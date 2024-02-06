@@ -1,14 +1,14 @@
 {
   "type": "crm-card",
   "data": {
-    "title": "Test in PROD",
+    "title": "Meme Viewer",
     "location": "crm.record.tab",
     "module": {
-      "file": "TestInProd.tsx"
+      "file": "../ViewMeme.jsx"
     },
     "objectTypes": [
       {
-        "name": "contacts"
+        "name": "p_memes"
       }
     ]
   }

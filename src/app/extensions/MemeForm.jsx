@@ -100,11 +100,11 @@ const MemeForm =  ({ runServerless }) => {
       }
       setLoading(false);
     })
-  }, [runServerless, boxes, loading]);
+  }, [runServerless, boxes, loading, name, dankness]);
 
   return <Card>
       <Flex direction='row' wrap={false} justify='start' gap='medium'>
-        <Box flex='none'>
+        <Flex direction='column' justify='start' gap='medium'>
           <Select
             label="Choose your meme 🎩"
             name="the-chosen-one"
@@ -128,9 +128,6 @@ const MemeForm =  ({ runServerless }) => {
             placeholder='Name me'
             name={`name`}
             key={`meme-name`}
-            onInput={value => {
-              setName(value);
-            }}
             onChange={value => {
               setName(value);
             }}
@@ -147,13 +144,13 @@ const MemeForm =  ({ runServerless }) => {
           />
           <Text></Text>
             <Button disabled={loading || !name || !dankness || Object.keys(boxes).length === 0} variant="primary" onClick={runServerlessFunction}>Generate Meme!</Button>
-        </Box>
-        <Box flex='none' alignSelf='auto'>
+        </Flex>
+        <Flex direction='column' justify='start' gap='medium'>
           {...inputs}
-        </Box>
-        <Box flex='none' alignSelf='center'>
+        </Flex>
+        <Flex direction='column' justify='start' gap='medium'>
           { loading ? <LoadingSpinner label='Loading meme' showLabel={true} size='md' layout='centered'/> : <Image src={imageUrl} href={imageUrl} width={300} />}
-        </Box>
+        </Flex>
     </Flex>
   </Card>;
 };

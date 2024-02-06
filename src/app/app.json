@@ -16,18 +16,18 @@
     "crm": {
       "cards": [
         {
-          "file": "./extensions/MemeForm.json"
+          "file": "./extensions/config/MemeForm.json"
         },
         {
-          "file": "./extensions/TestInProd.json"
+          "file": "./extensions/config/TestInProd.json"
         },
         {
-          "file": "./extensions/ViewMeme.json"
+          "file": "./extensions/config/ViewMeme.json"
         },
         {
-          "file": "./extensions/NyanCatSidebar.json"
+          "file": "./extensions/config/NyanCatSidebar.json"
         },
-        { "file": "./extensions/Peekaboo.json" }
+        { "file": "./extensions/config/Peekaboo.json" }
       ]
     }
   },

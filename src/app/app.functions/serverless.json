@@ -8,6 +8,10 @@
         "MEME_OBJECT_URL",
         "FILE_MANAGER_URL"
       ]
+    },
+    "build-extensions": {
+      "file": "build-extension.js",
+      "secrets": []
     }
   }
 }

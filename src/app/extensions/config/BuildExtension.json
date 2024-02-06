@@ -1,10 +1,10 @@
 {
   "type": "crm-card",
   "data": {
-    "title": "Peekaboo",
+    "title": "Build Extension",
     "location": "crm.record.tab",
     "module": {
-      "file": "Peekaboo.jsx"
+      "file": "../BuildExtension.jsx"
     },
     "objectTypes": [
       {
@@ -12,5 +12,5 @@
       }
     ]
   },
-  "uid": "Peekaboo"
+  "uid": "meme-form"
 }

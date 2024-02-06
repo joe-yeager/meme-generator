@@ -1,15 +1,16 @@
 {
   "type": "crm-card",
   "data": {
-    "title": "Meme Viewer",
+    "title": "Peekaboo",
     "location": "crm.record.tab",
     "module": {
-      "file": "ViewMeme.jsx"
+      "file": "../Peekaboo.jsx"
     },
     "objectTypes": [
       {
-        "name": "p_memes"
+        "name": "contacts"
       }
     ]
-  }
+  },
+  "uid": "Peekaboo"
 }
