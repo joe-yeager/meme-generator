@@ -4,7 +4,7 @@ import {
   hubspot,
   Flex
 } from '@hubspot/ui-extensions';
-import NyanCatChild from './components/NyanCatChild';
+import NyanCatChild from './shared/NyanCatChild';
 
 
 hubspot.extend(({ actions}) => (

@@ -1,6 +1,7 @@
 import {
   Image,
 } from '@hubspot/ui-extensions';
+import React from 'react';
 
 const NyanCatChild =  ({ openIframeModal, nyanUrl }) => {
   return (

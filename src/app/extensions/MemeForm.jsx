@@ -1,4 +1,4 @@
-import supportedMemes from './SupportedMemes';
+import supportedMemes from './shared/SupportedMemes';
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import {
   Button,
