@@ -78,8 +78,7 @@ const MemeForm =  ({ runServerless }) => {
       dankness
     })
     setLoading(true);
-    runServerless({
-      name: 'generate-meme-v2',
+    hubspot.serverless('generate-meme-v2', {
       payload: {
         formState: {
           boxes_length: theChosenOne.box_count,
@@ -91,14 +90,14 @@ const MemeForm =  ({ runServerless }) => {
       }
     }).then(res => {
       console.log("Meme Form response:")
-      console.table(res.response);
-      if(res.status === "SUCCESS" && res.response.status === 200) {
-        setError(null);
-        setImageUrl(res.response.message.body);
-      } else {
-        setError("Unable to generate memes at the moment")
-      }
-      setLoading(false);
+      console.table(res);
+      setError(null);
+      setImageUrl(res.message.body);
+    }).catch((e) => {
+      console.log(e)
+      setError("Unable to generate memes at the moment")
+    }).finally(() => {
+      setLoading(false)
     })
   }, [runServerless, boxes, loading, name, dankness]);
 

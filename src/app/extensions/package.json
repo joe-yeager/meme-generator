@@ -19,7 +19,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@hubspot/ui-extensions": "^0.8.4",
+    "@hubspot/ui-extensions": "^0.8.10",
     "@remote-ui/rpc": "^1.4.4"
   }
 }
