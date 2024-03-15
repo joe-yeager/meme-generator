@@ -4,27 +4,25 @@ import {
   hubspot,
   Image,
   LoadingSpinner,
-  Flex
+  Flex,
 } from '@hubspot/ui-extensions';
 
+hubspot.extend((props) => <MemeViewer {...props} />);
 
-hubspot.extend((props) => (
-  <MemeViewer {...props}/>
-));
-
-const MemeViewer =  ({ actions : {fetchCrmObjectProperties} }) => {
-  const [url, setUrl] = useState()
+const MemeViewer = ({ actions: { fetchCrmObjectProperties } }) => {
+  const [url, setUrl] = useState();
   useEffect(() => {
     (async () => {
-      const result = await fetchCrmObjectProperties(['url'])
-      setUrl(result.url)
-    })()
+      const result = await fetchCrmObjectProperties(['url']);
+      setUrl(result.url);
+    })();
   });
 
   return (
     <Card>
-      <Flex align='center' direction='column'>
-       {url ? <Image src={url} /> : <LoadingSpinner />}
+      <Flex align="center" direction="column">
+        {url ? <Image src={url} /> : <LoadingSpinner />}
       </Flex>
-    </Card>);
+    </Card>
+  );
 };
