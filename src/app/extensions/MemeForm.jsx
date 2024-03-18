@@ -12,56 +12,56 @@ import {
   LoadingSpinner,
 } from '@hubspot/ui-extensions';
 
-import {
-  generateTextInputs,
-  formatMemesForSelectInput,
-} from './shared/MemeUtils';
-
-const theCreator = 'jyeager@hubspot.com';
+import { formatMemesForSelectInput } from './shared/MemeUtils';
+import { FlexColumn } from './shared/FlexColumn';
+import { memeReducer } from './shared/MemeReducer';
 
 hubspot.extend((props) => {
   return <MemeForm {...props} />;
 });
 
 const defaultOptions = formatMemesForSelectInput(supportedMemes);
+const theChosenOne = 'jyeager@hubspot.com';
 
 const MemeForm = ({ context }) => {
-  const [state, dispatch] = useReducer(reducer);
-  const [boxes, setBoxes] = useState({});
-  const [error, setError] = useState(null);
+  const [state, dispatch] = useReducer(memeReducer, {
+    boxes: {},
+    error: null,
+    selectedMeme: defaultOptions[0],
+    imageUrl: defaultOptions[0].url,
+    inputs: [],
+    name: '',
+    dankness: '',
+    options: defaultOptions,
+    memes: supportedMemes,
+  });
+
   const [loading, setLoading] = useState(false);
-  const [theChosenOne, setTheChosenOne] = useState(defaultOptions[0]);
-  const [imageUrl, setImageUrl] = useState(theChosenOne.url);
-  const [inputs, setInputs] = useState([]);
-  const [name, setName] = useState(null);
-  const [dankness, setDankness] = useState(null);
-  const [options, setOptions] = useState(defaultOptions);
-  const [memes, setMemes] = useState(supportedMemes);
 
-  function findMeme(id) {
-    return memes.find((meme) => meme.id === id);
-  }
+  const findMeme = useCallback(
+    (id) => {
+      return state.memes.find((meme) => meme.id === id);
+    },
+    [state.memes]
+  );
 
   useEffect(() => {
-    setInputs(generateTextInputs(theChosenOne, boxes, setBoxes));
-  }, [theChosenOne, boxes]);
-
-  useEffect(() => {
-    if (context.user.email === theCreator) {
+    if (context.user.email === theChosenOne) {
       setLoading(true);
       hubspot
         .serverless('get-memes')
         .then((res) => {
-          console.log(res.message.body);
           const freshMemes = res.message.body;
-          setOptions(formatMemesForSelectInput(freshMemes));
-          setMemes(freshMemes);
-          setTheChosenOne(freshMemes[0]);
-          setImageUrl(freshMemes[0].url)
+          dispatch({
+            type: 'UPDATE_MEME_OPTIONS',
+            freshMemes,
+            boxesUpdater: (boxes) => {
+              dispatch({ type: 'UPDATE_BOXES', boxes });
+            },
+          });
         })
         .catch((e) => {
-          console.log(e);
-          console.log('unable to fetch fresh memes, using stale memes');
+          console.error('unable to fetch fresh memes, using stale memes', e);
         })
         .finally(() => {
           setLoading(false);
@@ -82,52 +82,56 @@ const MemeForm = ({ context }) => {
   //   })
   // }, []);
 
-  const runServerlessFunction = useCallback(() => {
+  const createMeme = useCallback(() => {
     setLoading(true);
     hubspot
       .serverless('generate-meme-v2', {
         payload: {
           formState: {
-            boxes_length: theChosenOne.box_count,
-            template_id: theChosenOne.id,
-            boxes,
-            name,
-            dankness,
+            boxes_length: state.selectedMeme.box_count,
+            template_id: state.selectedMeme.id,
+            boxes: state.boxes,
+            name: state.name,
+            dankness: state.dankness,
           },
         },
       })
       .then((res) => {
-        setError(null);
-        setImageUrl(res.message.body);
+        dispatch({ type: 'SHOW_MEME', url: res.message.body });
       })
       .catch((e) => {
-        setError('Unable to generate memes at the moment');
+        dispatch({
+          type: 'SET_ERROR',
+          error: 'Unable to generate memes at the moment',
+        });
       })
       .finally(() => {
         setLoading(false);
       });
-  }, [boxes, loading, name, dankness]);
+  }, [state.boxes, loading, state.name, state.dankness]);
 
   return (
     <Card>
       <Flex direction="row" wrap={false} justify="start" gap="medium">
-        <Flex direction="column" justify="start" gap="medium">
+        <FlexColumn>
           <Select
             label="Choose your meme 🎩"
             name="the-chosen-one"
             required={true}
-            value={theChosenOne.id}
-            error={!!error}
-            validationMessage={error ? error : null}
+            value={state.selectedMeme.id}
+            error={!!state.error}
+            validationMessage={state.error ? state.error : null}
             onChange={(value) => {
               const newMeme = findMeme(value);
-              setBoxes({});
-              setTheChosenOne(newMeme);
-              setImageUrl(newMeme.url);
-              setDankness(null);
-              setError(null);
+              dispatch({
+                type: 'SELECT_NEW_MEME',
+                newMeme,
+                boxesUpdater: (boxes) => {
+                  dispatch({ type: 'UPDATE_BOXES', boxes });
+                },
+              });
             }}
-            options={options}
+            options={state.options}
           />
           <Input
             label={`Give your meme a name`}
@@ -137,34 +141,35 @@ const MemeForm = ({ context }) => {
             value=""
             key={`meme-name`}
             onChange={(value) => {
-              setName(value);
+              dispatch({ type: 'UPDATE_NAME', name: value });
             }}
           />
           <Select
             label="Dankness rating"
             name="dankness"
             required={true}
-            value={dankness}
+            value={state.dankness}
             onChange={(value) => {
-              setDankness(value);
+              dispatch({ type: 'UPDATE_DANKNESS', dankness: value });
             }}
             options={[{ value: 1 }, { value: 9001 }]}
           />
           <Text></Text>
           <Button
             disabled={
-              loading || !name || !dankness || Object.keys(boxes).length === 0
+              loading ||
+              !state.name ||
+              !state.dankness ||
+              Object.keys(state.boxes).length === 0
             }
             variant="primary"
-            onClick={runServerlessFunction}
+            onClick={createMeme}
           >
             Generate Meme!
           </Button>
-        </Flex>
-        <Flex direction="column" justify="start" gap="medium">
-          {...inputs}
-        </Flex>
-        <Flex direction="column" justify="start" gap="medium">
+        </FlexColumn>
+        <FlexColumn>{...state.inputs}</FlexColumn>
+        <FlexColumn>
           {loading ? (
             <LoadingSpinner
               label="Loading meme"
@@ -173,9 +178,9 @@ const MemeForm = ({ context }) => {
               layout="centered"
             />
           ) : (
-            <Image src={imageUrl} href={imageUrl} width={300} />
+            <Image src={state.imageUrl} href={state.imageUrl} width={300} />
           )}
-        </Flex>
+        </FlexColumn>
       </Flex>
     </Card>
   );
