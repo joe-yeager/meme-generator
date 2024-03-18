@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "prettier": "prettier . --write"
+    "prettier": "prettier . --write",
+    "postinstall": "npm install --prefix='src/app/app.functions' && npm install --prefix='src/app/extensions'"
   },
   "dependencies": {
     "prettier": "^3.2.5"
