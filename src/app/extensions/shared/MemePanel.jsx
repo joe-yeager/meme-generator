@@ -10,7 +10,7 @@ import {
 
 export const MemePanel = ({ imageUrl, reactions }) => {
   return (
-    <Panel title="Meme Panel" id="meme-panel" width="medium">
+    <Panel title="Meme Kapanel" id="meme-panel" width="medium">
       <PanelBody>
         <PanelSection>
           <Image src={imageUrl} href={imageUrl} />
