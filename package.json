@@ -1,15 +1,11 @@
 {
   "scripts": {
     "prettier": "prettier . --write",
-    "postinstall": "npm install --prefix='src/app/app.functions' && npm install --prefix='src/app/extensions'"
+    "postinstall": "npm install --prefix='src/app/app.functions' && npm install --prefix='src/app/extensions'",
+    "prepare": "husky"
   },
   "dependencies": {
     "husky": "^9.0.11",
     "prettier": "^3.2.5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "prettier ."
-    }
   }
 }
