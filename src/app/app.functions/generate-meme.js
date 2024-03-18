@@ -23,11 +23,7 @@ exports.main = async (context = {}) => {
 
     const filePath = await downloadImage(memeData);
     const memeUrl = await uploadToFileManager(filePath);
-    const customObjectResponse = await createCustomMemeObject(
-      formState,
-      memeUrl
-    );
-    console.log(customObjectResponse);
+    await createCustomMemeObject(formState, memeUrl);
 
     return {
       status: 200,

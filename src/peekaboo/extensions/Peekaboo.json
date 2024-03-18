@@ -2,9 +2,9 @@
   "type": "crm-card",
   "data": {
     "title": "Peekaboo",
-    "location": "crm.record.tab",
+    "location": "crm.record.sidebar",
     "module": {
-      "file": "../Peekaboo.jsx"
+      "file": "Peekaboo.jsx"
     },
     "objectTypes": [
       {

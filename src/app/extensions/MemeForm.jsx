@@ -15,6 +15,8 @@ import {
 import { formatMemesForSelectInput } from './shared/MemeUtils';
 import { FlexColumn } from './shared/FlexColumn';
 import { memeReducer } from './shared/MemeReducer';
+import { MemePanel } from './shared/MemePanel';
+import { retain } from '@remote-ui/rpc';
 
 hubspot.extend((props) => {
   return <MemeForm {...props} />;
@@ -33,11 +35,15 @@ const MemeForm = ({ context }) => {
     name: '',
     dankness: '',
     options: defaultOptions,
-
+    finishedProduct: '',
     memes: supportedMemes,
   });
 
   const [loading, setLoading] = useState(false);
+  const [stolenReactions, setStolenReactions] = useState({
+    openPanel: () => {},
+    closePanel: () => {},
+  });
 
   const findMeme = useCallback(
     (id) => {
@@ -83,36 +89,42 @@ const MemeForm = ({ context }) => {
   //   })
   // }, []);
 
-  const createMeme = useCallback(() => {
-    setLoading(true);
-    hubspot
-      .serverless('generate-meme-v2', {
-        payload: {
-          formState: {
-            boxes_length: state.selectedMeme.box_count,
-            template_id: state.selectedMeme.id,
-            boxes: state.boxes,
-            name: state.name,
-            dankness: state.dankness,
+  const createMeme = useCallback(
+    (event, reactions) => {
+      setLoading(true);
+      return hubspot
+        .serverless('generate-meme-v2', {
+          payload: {
+            formState: {
+              boxes_length: state.selectedMeme.box_count,
+              template_id: state.selectedMeme.id,
+              boxes: state.boxes,
+              name: state.name,
+              dankness: state.dankness,
+            },
           },
-        },
-      })
-      .then((res) => {
-        dispatch({ type: 'SHOW_MEME', url: res.message.body });
-      })
-      .catch((e) => {
-        dispatch({
-          type: 'SET_ERROR',
-          error: 'Unable to generate memes at the moment',
+        })
+        .then((res) => {
+          dispatch({ type: 'SHOW_MEME', url: res.message.body });
+          reactions.openPanel('meme-panel');
+        })
+        .catch((e) => {
+          console.log(e);
+          dispatch({
+            type: 'SET_ERROR',
+            error: 'Unable to generate memes at the moment',
+          });
+        })
+        .finally(() => {
+          setLoading(false);
         });
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [state.boxes, loading, state.name, state.dankness]);
+    },
+    [state.boxes, loading, state.name, state.dankness]
+  );
 
   return (
     <Card>
+      <MemePanel imageUrl={state.finishedProduct} reactions={stolenReactions} />
       <Flex direction="row" wrap={false} justify="start" gap="medium">
         <FlexColumn>
           <Select
@@ -164,7 +176,11 @@ const MemeForm = ({ context }) => {
               Object.keys(state.boxes).length === 0
             }
             variant="primary"
-            onClick={createMeme}
+            onClick={async (event, reactions) => {
+              retain(reactions);
+              setStolenReactions(reactions);
+              return createMeme(event, reactions);
+            }}
           >
             Generate Meme!
           </Button>

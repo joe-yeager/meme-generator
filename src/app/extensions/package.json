@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "@hubspot/ui-extensions": "^0.8.10",
-    "@remote-ui/rpc": "^1.4.4"
+    "@remote-ui/rpc": "^1.4.5"
   }
 }

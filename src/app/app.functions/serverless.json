@@ -12,10 +12,6 @@
     "get-memes": {
       "file": "get-memes.js",
       "secrets": []
-    },
-    "build-extensions": {
-      "file": "build-extension.js",
-      "secrets": []
     }
   }
 }

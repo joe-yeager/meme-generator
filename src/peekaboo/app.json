@@ -5,7 +5,7 @@
   "public": false,
   "extensions": {
     "crm": {
-      "cards": [{ "file": "./extensions/PeekabooSidebar.json" }]
+      "cards": [{ "file": "./extensions/Peekaboo.json" }]
     }
   },
   "uid": "peek-a-boo"

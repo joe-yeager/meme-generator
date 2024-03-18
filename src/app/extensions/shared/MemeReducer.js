@@ -19,7 +19,7 @@ export function memeReducer(state, action) {
       return {
         ...state,
         error: null,
-        imageUrl: action.url,
+        finishedProduct: action.url,
         loading: false,
       };
     case 'SELECT_NEW_MEME':
