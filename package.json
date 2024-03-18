@@ -4,6 +4,12 @@
     "postinstall": "npm install --prefix='src/app/app.functions' && npm install --prefix='src/app/extensions'"
   },
   "dependencies": {
+    "husky": "^9.0.11",
     "prettier": "^3.2.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "prettier ."
+    }
   }
 }
