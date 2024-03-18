@@ -33,6 +33,7 @@ const MemeForm = ({ context }) => {
     name: '',
     dankness: '',
     options: defaultOptions,
+
     memes: supportedMemes,
   });
 

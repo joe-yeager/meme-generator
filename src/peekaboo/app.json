@@ -1,16 +1,11 @@
 {
   "name": "Peekaboo Sidebar",
   "description": "Peekaboo",
-  "scopes": [
-    "crm.objects.contacts.read",
-    "crm.objects.contacts.write"
-  ],
+  "scopes": ["crm.objects.contacts.read", "crm.objects.contacts.write"],
   "public": false,
   "extensions": {
     "crm": {
-      "cards": [
-        { "file": "./extensions/PeekabooSidebar.json" }
-      ]
+      "cards": [{ "file": "./extensions/PeekabooSidebar.json" }]
     }
   },
   "uid": "peek-a-boo"

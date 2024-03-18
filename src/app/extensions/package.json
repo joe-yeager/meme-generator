@@ -16,14 +16,10 @@
     "local-build": "npm run developing-local-dev-server && hs-ui-extensions-dev-server build --force",
     "local-integration-test": "DEBUG=true npm run developing-local-dev-server && npm run integration-test",
     "latest": "../../../scripts/switchBackToLatest.js && npm run clean-install-local",
-    "lint": "eslint",
-    "prettier": "prettier . --write"
+    "lint": "eslint"
   },
   "dependencies": {
     "@hubspot/ui-extensions": "^0.8.10",
     "@remote-ui/rpc": "^1.4.4"
-  },
-  "devDependencies": {
-    "prettier": "^3.2.5"
   }
 }
