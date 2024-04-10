@@ -10,6 +10,7 @@ const NyanCatChild = ({ openIframeModal, nyanUrl }) => {
           width: 500000,
           height: 748,
           uri: 'https://www.nyan.cat/',
+          title: 'Nyan Cat',
         });
       }}
     />

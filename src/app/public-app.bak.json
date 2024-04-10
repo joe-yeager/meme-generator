@@ -1,0 +1,39 @@
+{
+  "name": "Meme Generator",
+  "uid": "getting-started-app-uid",
+  "description": "An example project of how to build a Public App with Developer Projects",
+  "approvedExternalUrls": ["https://api.your-domain.com"],
+  "auth": {
+    "redirectUrls": ["http://localhost"],
+    "requiredScopes": [
+      "crm.objects.contacts.read",
+      "crm.objects.contacts.write"
+    ],
+    "optionalScopes": [],
+    "additionalScopes": []
+  },
+  "support": {
+    "supportEmail": "support@example.com",
+    "documentationUrl": "https://example.com/docs",
+    "supportUrl": "https://example.com/support",
+    "supportPhone": "1-800-555-5555"
+  },
+  "extensions": {
+    "crm": {
+      "cards": [
+        {
+          "file": "./extensions/config/MemeForm.json"
+        },
+        {
+          "file": "./extensions/config/TestInProd.json"
+        },
+        {
+          "file": "./extensions/config/ViewMeme.json"
+        },
+        {
+          "file": "./extensions/config/NyanCatSidebar.json"
+        }
+      ]
+    }
+  }
+}

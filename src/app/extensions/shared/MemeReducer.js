@@ -11,7 +11,7 @@ export function memeReducer(state, action) {
         imageUrl: action.freshMemes[0].url,
         inputs: generateTextInputs(
           action.freshMemes[0],
-          state.boxes,
+          {},
           action.boxesUpdater
         ),
       };
@@ -28,11 +28,7 @@ export function memeReducer(state, action) {
         boxes: {},
         selectedMeme: action.newMeme,
         imageUrl: action.newMeme.url,
-        inputs: generateTextInputs(
-          action.newMeme,
-          state.boxes,
-          action.boxesUpdater
-        ),
+        inputs: generateTextInputs(action.newMeme, {}, action.boxesUpdater),
         dankness: null,
         error: null,
       };

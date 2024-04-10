@@ -1,0 +1,15 @@
+{
+  "type": "crm-card",
+  "data": {
+    "title": "Meme Viewer Preview Sidebar",
+    "location": "crm.preview",
+    "module": {
+      "file": "../ViewMeme.jsx"
+    },
+    "objectTypes": [
+      {
+        "name": "p_memes"
+      }
+    ]
+  }
+}

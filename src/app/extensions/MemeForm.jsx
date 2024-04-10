@@ -80,7 +80,7 @@ const MemeForm = ({ context }) => {
   //   let url = new URL('https://run.mocky.io/v3/c8bee14d-4fe2-452c-b895-1edc35225535');
   //   self.hsFetch(url, {
   //     timeout: 2000,
-  //     method: 'OPTION'
+  //     method: 'POST'
   //   }).then((response) => {
   //     console.log(response.status)
   //     response.json().then(console.log)

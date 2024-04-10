@@ -1,8 +1,8 @@
 {
   "type": "crm-card",
   "data": {
-    "title": "Meme Generator v2 🤠🤠🤠🤠",
-    "location": "crm.record.tab",
+    "title": "🤠🤠🤠🤠",
+    "location": "crm.preview",
     "module": {
       "file": "../MemeForm.jsx"
     },
@@ -12,5 +12,5 @@
       }
     ]
   },
-  "uid": "meme-form"
+  "uid": "meme-form-sidebar"
 }
