@@ -1,13 +1,15 @@
 // For external API calls
-const axios = require('axios');
-const fs = require('fs');
-const crypto = require('crypto');
+import axios from "axios";
+import * as fs from "node:fs";
+import * as crypto from "crypto";
+import {superImportant} from './shared/common';
 
 const imgFlipUrl = 'https://api.imgflip.com/caption_image';
 
 exports.main = async (context = {}) => {
+  // @ts-expect-error context
   const { formState } = context.event.payload;
-
+  superImportant()
   try {
     const memeData = await createMeme(formState);
 

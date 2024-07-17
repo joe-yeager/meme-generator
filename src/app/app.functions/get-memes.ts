@@ -1,9 +1,11 @@
 // For external API calls
-const axios = require('axios');
+import axios from "axios";
+import {superImportant} from './shared/common';
 
 const imgFlipUrl = 'https://api.imgflip.com/get_memes';
 
 exports.main = async (context = {}) => {
+  superImportant()
   try {
     const {
       data: {
@@ -14,7 +16,7 @@ exports.main = async (context = {}) => {
       status: 200,
       message: { type: 'SUCCESS', body: memes },
     };
-  } catch (e) {
+  } catch (err) {
     return {
       status: 500,
       message: {

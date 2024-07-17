@@ -1,7 +1,7 @@
 {
   "appFunctions": {
     "generate-meme-v2": {
-      "file": "generate-meme.js",
+      "file": "output/generate-meme.js",
       "secrets": [
         "IMG_FLIP_USERNAME",
         "IMG_FLIP_PASSWORD",
@@ -10,7 +10,7 @@
       ]
     },
     "get-memes": {
-      "file": "get-memes.js",
+      "file": "output/get-memes.js",
       "secrets": []
     }
   }
